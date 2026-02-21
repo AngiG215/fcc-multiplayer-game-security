@@ -22,9 +22,10 @@ app.use(helmet.hsts({
 // --- SEGURIDAD (Historias de usuario) ---
 app.use(helmet.noSniff());
 app.use(helmet.xssFilter());
-app.use(helmet.noCache());
 app.use(helmet.hidePoweredBy({ setTo: 'PHP 7.4.3' }));
+app.use(helmet.noCache());
 
+fccTestingRoutes(app);
 app.use(cors({origin: '*'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,7 +39,7 @@ app.route('/').get(function (req, res) {
   res.sendFile(process.cwd() + '/views/index.html');
 });
 
-fccTestingRoutes(app);
+
 
 // --- INICIO DEL SERVIDOR ---
 const port = process.env.PORT || 3000;
