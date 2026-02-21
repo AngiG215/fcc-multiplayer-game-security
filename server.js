@@ -11,6 +11,14 @@ const runner = require('./test-runner.js');
 
 const app = express();
 
+// 1. Definir el tiempo
+const ninetyDaysInSeconds = 90 * 24 * 60 * 60;
+
+// 2. Configurar HSTS
+app.use(helmet.hsts({
+  maxAge: ninetyDaysInSeconds,
+  force: true
+}));
 // --- SEGURIDAD (Historias de usuario) ---
 app.use(helmet.noSniff());
 app.use(helmet.xssFilter());
